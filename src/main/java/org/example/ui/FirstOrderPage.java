@@ -3,7 +3,7 @@ package org.example.ui;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class FirstOrderPage {
+public class FirstOrderPage extends BasePage {
     // Поле ввода "Имя"
     private final By nameInput = By.xpath(".//*[@placeholder='* Имя']");
     // Поле ввода "Фамилия"
@@ -17,10 +17,8 @@ public class FirstOrderPage {
     // Кнопка "Далее"
     private final By nextStepButton = By.xpath(".//*[text()='Далее']");
 
-    private final WebDriver driver;
-
     public FirstOrderPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void setName(String name) {
@@ -35,10 +33,10 @@ public class FirstOrderPage {
         driver.findElement(addressInput).sendKeys(address);
     }
 
-    public void selectMetroStation(String metroStationXPath) {
+    public void selectMetroStation(String metroStation) {
         driver.findElement(metroStationInput).click();
-        driver.findElement(By.xpath(metroStationXPath)).click();
-
+        String formatted = String.format("//*[@class='select-search__select']//div[text()='%s']", metroStation);
+        driver.findElement(By.xpath(formatted)).click();
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -49,11 +47,11 @@ public class FirstOrderPage {
         driver.findElement(nextStepButton).click();
     }
 
-    public void fillInTheFirstPageOfData(String name, String surname, String address, String metroStationXPath, String phoneNumber) {
+    public void fillInTheFirstPageOfData(String name, String surname, String address, String metroStation, String phoneNumber) {
         setName(name);
         setSurname(surname);
         setAddress(address);
-        selectMetroStation(metroStationXPath);
+        selectMetroStation(metroStation);
         setPhoneNumber(phoneNumber);
         clickNextStepButton();
     }

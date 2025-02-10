@@ -3,7 +3,7 @@ package org.example.ui;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class SecondOrderPage {
+public class SecondOrderPage extends BasePage {
     // Поле ввода "Когда привезти самокат"
     private final By deliveryDateInput = By.xpath(".//*[@placeholder='* Когда привезти самокат']");
     // Поле ввода "Срок аренды"
@@ -17,10 +17,8 @@ public class SecondOrderPage {
     // Всплывающее окно "Заказ оформлен"
     private final By orderSubmittedScreen = By.xpath("//button[contains(text(), 'Посмотреть статус')]");
 
-    private final WebDriver driver;
-
     public SecondOrderPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void setDeliveryDate(String deliveryDate) {

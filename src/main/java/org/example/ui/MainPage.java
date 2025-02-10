@@ -4,17 +4,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
-public class MainPage {
+public class MainPage extends BasePage {
     // Кнопка "Заказать" вверху страницы
     private final By topOrderButton = By.xpath(".//*[@class='Button_Button__ra12g']");
     // Кнопка "Заказать" внизу страницы
-    private final By bottomOrderButton = By.xpath("//*[@id='root']/div/div/div[4]/div[2]/div[5]/button");
-    // Выпадающий список "Сколько это стоит? И как оплатить?"
-
-    private final WebDriver driver;
+    private final By bottomOrderButton = By.xpath(".//*[@class='Home_FinishButton__1_cWm']/button");
 
     public MainPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public void clickTopOrderButton() {
