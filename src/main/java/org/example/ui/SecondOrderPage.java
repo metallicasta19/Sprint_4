@@ -25,13 +25,15 @@ public class SecondOrderPage extends BasePage {
         driver.findElement(deliveryDateInput).sendKeys(deliveryDate);
     }
 
-    public void setRentalPeriod(String rentalPeriodXPath) {
+    public void setRentalPeriod(String rentalPeriod) {
         driver.findElement(rentalPeriodInput).click();
-        driver.findElement(By.xpath(rentalPeriodXPath)).click();
+        String formatted = String.format("//*[@class='Dropdown-menu']//div[text()='%s']", rentalPeriod);
+        driver.findElement(By.xpath(formatted)).click();
     }
 
-    public void setScooterColor(String scooterColorXPath) {
-        driver.findElement(By.xpath(scooterColorXPath)).click();
+    public void setScooterColor(String scooterColor) {
+        String formatted = String.format("//*[@class='Order_Checkboxes__3lWSI']//*[text()='%s']", scooterColor);
+        driver.findElement(By.xpath(formatted)).click();
     }
 
     public void setCommentForCourier(String commentForCourier) {
@@ -46,10 +48,10 @@ public class SecondOrderPage extends BasePage {
         driver.findElement(confirmationOrderButton).click();
     }
 
-    public void fillInTheSecondPageOfData(String deliveryDate, String rentalPeriodXPath, String scooterColorXPath, String commentForCourier) {
+    public void fillInTheSecondPageOfData(String deliveryDate, String rentalPeriod, String scooterColor, String commentForCourier) {
         setDeliveryDate(deliveryDate);
-        setRentalPeriod(rentalPeriodXPath);
-        setScooterColor(scooterColorXPath);
+        setRentalPeriod(rentalPeriod);
+        setScooterColor(scooterColor);
         setCommentForCourier(commentForCourier);
         clickOrderButton();
         clickConfirmationOrderButton();

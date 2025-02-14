@@ -18,8 +18,8 @@ public class OrderTest extends BaseTest {
 
         SecondOrderPage secondOrderPage = new SecondOrderPage(BaseTest.driver);
         secondOrderPage.fillInTheSecondPageOfData("14.02.2025",
-                ".//*[@class='Dropdown-menu']//div[text()='сутки']",
-                ".//*[@class='Checkbox_Input__14A2w']", "Не звонить.");
+                "сутки",
+                "чёрный жемчуг", "Не звонить.");
         assertTrue(secondOrderPage.isOrderSubmittedScreenVisible());
     }
 
@@ -36,8 +36,8 @@ public class OrderTest extends BaseTest {
 
         SecondOrderPage secondOrderPage = new SecondOrderPage(BaseTest.driver);
         secondOrderPage.fillInTheSecondPageOfData("20.02.2025",
-                ".//*[@class='Dropdown-menu']//div[text()='двое суток']",
-                ".//*[@class='Checkbox_Input__14A2w']", "Доставьте как можно быстрее.");
+                "двое суток",
+                "серая безысходность", "Доставьте как можно быстрее.");
         assertTrue(secondOrderPage.isOrderSubmittedScreenVisible());
     }
 }

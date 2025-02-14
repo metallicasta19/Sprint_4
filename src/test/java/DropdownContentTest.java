@@ -1,14 +1,8 @@
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import static org.junit.Assert.assertEquals;
-
-import java.time.Duration;
+import org.example.ui.DropdownContentPage;
 
 @RunWith(Parameterized.class)
 public class DropdownContentTest extends BaseTest {
@@ -37,15 +31,9 @@ public class DropdownContentTest extends BaseTest {
 
     @Test
     public void dropdownContentTest() {
-        String dropdownTitleXPath = String.format(".//*[text()='%s']", dropdownTitle);
-        WebElement dropdownTitleElement = BaseTest.driver.findElement(By.xpath(dropdownTitleXPath));
-        ((JavascriptExecutor) BaseTest.driver).executeScript("arguments[0].scrollIntoView(true);", dropdownTitleElement);
-        dropdownTitleElement.click();
-
-        String dropdownDescriptionXPath = dropdownTitleXPath + "/parent::div/parent::div//p";
-        new WebDriverWait(BaseTest.driver, Duration.ofSeconds(3))
-                .until(ExpectedConditions.visibilityOfElementLocated(By.xpath(dropdownDescriptionXPath)));
-        String actualText = BaseTest.driver.findElement(By.xpath(dropdownDescriptionXPath)).getText();
+        DropdownContentPage dropdownContentPage = new DropdownContentPage(driver);
+        dropdownContentPage.clickDropdownTitle(dropdownTitle);
+        String actualText = dropdownContentPage.getActualText(dropdownTitle);
         assertEquals("Текст не соответствует ожидаемому.", expectedText, actualText);
     }
 }
